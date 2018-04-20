@@ -57,6 +57,16 @@ sudo sed -i "s/upload_max_filesize = .*/upload_max_filesize = 1000M/" /etc/php/7
 sudo sed -i "s/max_execution_time = .*/max_execution_time = 18000/" /etc/php/7.0/fpm/php.ini
 sudo sed -i "s/; max_input_vars = .*/max_input_vars = 5000/" /etc/php/7.0/fpm/php.ini
 sudo sed -i "s/zlib.output_compression = Off/zlib.output_compression = on/" /etc/php/7.0/fpm/php.ini
+
+sudo sed -i "s/;clear_env = no/clear_env = no/" /etc/php/7.0/fpm/pool.d/www.conf
+sudo sed -i "s/;opcache.enable=0/opcache.enable=1/" /etc/php/7.0/fpm/php.ini
+sudo sed -i "s/;opcache.enable_cli=0/opcache.enable_cli=1/" /etc/php/7.0/fpm/php.ini
+sudo sed -i "s/;opcache.interned_strings_buffer=4/opcache.interned_strings_buffer=8/" /etc/php/7.0/fpm/php.ini
+sudo sed -i "s/;opcache.max_accelerated_files=2000/opcache.max_accelerated_files=10000/" /etc/php/7.0/fpm/php.ini
+sudo sed -i "s/;opcache.memory_consumption=64/opcache.memory_consumption=128/" /etc/php/7.0/fpm/php.ini
+sudo sed -i "s/;opcache.save_comments=1/opcache.save_comments=1/" /etc/php/7.0/fpm/php.ini
+sudo sed -i "s/;opcache.revalidate_freq=2/opcache.revalidate_freq=1/" /etc/php/7.0/fpm/php.ini
+
 sudo systemctl restart php7.0-fpm.service
 
 echo "Instaling MariaDB"
