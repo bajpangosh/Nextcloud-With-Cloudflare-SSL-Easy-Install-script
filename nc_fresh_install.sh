@@ -30,8 +30,6 @@ cd /etc/nginx/
 sudo mv nginx.conf nginx.conf.backup
 wget -O nginx.conf https://goo.gl/n8crcR
 sudo mkdir /var/www/"$DOMAIN"
-cd /var/www/"$DOMAIN"
-sudo su -c 'echo "<?php phpinfo(); ?>" |tee info.php'
 cd ~
 wget -O nextcloud.zip https://download.nextcloud.com/server/releases/nextcloud-13.0.1.zip
 unzip nextcloud.zip
