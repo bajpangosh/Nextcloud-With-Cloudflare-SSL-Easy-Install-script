@@ -2,9 +2,13 @@
 # GET ALL USER INPUT
 echo "Domain Name (eg. example.com)?"
 read DOMAIN
-sleep 2;
+
 echo "Username (eg. nextcloud)?"
 read USERNAME
+
+echo "Databasename (eg. nextcloud_data)?"
+read DBNAME
+
 
 echo "Updating OS................."
 sleep 2;
@@ -79,12 +83,13 @@ sudo mysql_secure_installation
 PASS=`pwgen -s 14 1`
 
 mysql -uroot <<MYSQL_SCRIPT
-CREATE DATABASE $USERNAME;
+CREATE DATABASE $DBNAME;
 CREATE USER '$USERNAME'@'localhost' IDENTIFIED BY '$PASS';
-GRANT ALL PRIVILEGES ON $USERNAME.* TO '$USERNAME'@'localhost';
+GRANT ALL PRIVILEGES ON $DBNAME.* TO '$USERNAME'@'localhost';
 FLUSH PRIVILEGES;
 MYSQL_SCRIPT
 
-echo "MySQL user created."
+echo "Your new Droplet is all set to go!"
+echo "Database:   $DBNAME"
 echo "Username:   $USERNAME"
 echo "Password:   $PASS"
