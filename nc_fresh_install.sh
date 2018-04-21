@@ -2,6 +2,8 @@
 # GET ALL USER INPUT
 echo "Domain Name (eg. example.com)?"
 read DOMAIN
+echo "Username (eg. nextcloud)?"
+read USERNAME
 
 echo "Updating OS................."
 sleep 2;
@@ -12,6 +14,7 @@ sleep 2;
 sudo apt-get install nginx -y
 sudo apt-get install zip -y
 sudo apt install unzip -y
+sudo apt-get install pwgen -y
 sudo snap install nextcloud
 
 echo "Sit back and relax :) ......"
@@ -72,3 +75,15 @@ sleep 2;
 sudo apt install mariadb-server mariadb-client php7.0-mysql -y
 sudo systemctl restart php7.0-fpm.service
 sudo mysql_secure_installation
+PASS=`pwgen -s 14 1`
+
+mysql -uroot <<MYSQL_SCRIPT
+CREATE DATABASE $USERNAME;
+CREATE USER '$USERNAME'@'localhost' IDENTIFIED BY '$PASS';
+GRANT ALL PRIVILEGES ON $USERNAME.* TO '$USERNAME'@'localhost';
+FLUSH PRIVILEGES;
+MYSQL_SCRIPT
+
+echo "MySQL user created."
+echo "Username:   $USERNAME"
+echo "Password:   $PASS"
