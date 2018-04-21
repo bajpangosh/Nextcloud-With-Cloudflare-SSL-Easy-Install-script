@@ -2,6 +2,7 @@
 # GET ALL USER INPUT
 echo "Domain Name (eg. example.com)?"
 read DOMAIN
+sleep 2;
 echo "Username (eg. nextcloud)?"
 read USERNAME
 
