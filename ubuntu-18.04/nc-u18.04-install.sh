@@ -10,7 +10,7 @@ sudo apt-get update
 
 echo "Installing Nginx"
 sleep 2;
-sudo apt-get install nginx zip pwgen -y
+sudo apt-get install nginx zip unzip pwgen -y
 sudo snap install nextcloud
 
 echo "Sit back and relax :) ......"
@@ -32,7 +32,7 @@ sudo mkdir /var/www/"$DOMAIN"
 cd ~
 sudo wget -O nextcloud.zip https://download.nextcloud.com/server/releases/latest.zip
 sudo unzip nextcloud.zip
-sudo mv /root/nextcloud/{.,}* /var/www/"$DOMAIN"/
+sudo rsync -avP /root/nextcloud/ /var/www/"$DOMAIN"/
 sudo rm -rf nextcloud nextcloud.zip
 
 echo "Nginx server installation completed"
