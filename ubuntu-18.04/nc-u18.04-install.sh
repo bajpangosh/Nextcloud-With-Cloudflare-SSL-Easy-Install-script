@@ -16,7 +16,7 @@ sudo snap install nextcloud
 echo "Sit back and relax :) ......"
 sleep 2;
 cd /etc/nginx/sites-available/
-wget -O "$DOMAIN" https://goo.gl/PLMm51
+wget -O "$DOMAIN" https://raw.githubusercontent.com/bajpangosh/Nextcloud-With-Cloudflare-SSL-Easy-Install-script/master/ubuntu-18.04/nginx.conf
 sed -i -e "s/example.com/$DOMAIN/" "$DOMAIN"
 sudo ln -s /etc/nginx/sites-available/"$DOMAIN" /etc/nginx/sites-enabled/
 
