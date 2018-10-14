@@ -1,8 +1,18 @@
-Nextcloud Easy install bash script
+# How To Install Latest NextCloud on Ubuntu 18.04
 
-Ubuntu 18.04
+This is a easy install bash script for Deploy NextCloud on your server. Using Nginx, PHP 7.2, MariaDb.
+Use only on Ubuntu-18.04.
 
-Nextcloud latest updated version
-php7.2
-nginx latest updated version
-Cloudflare FULL SSL
+## Features
+
+>NextCloud (updated)
+
+> Nginx (updated)
+
+> PHP 7.2
+
+> PHP-fpm
+
+> Mariadb (updated)
+
+`wget -qO nc-18-04 run.kloudboy.com/nc-18-04 && sudo bash nc-18-04`
