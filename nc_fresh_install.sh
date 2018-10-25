@@ -19,8 +19,8 @@ sudo snap install nextcloud
 echo "Sit back and relax :) ......"
 sleep 2;
 cd /etc/nginx/sites-available/
-wget -O "$DOMAIN" https://goo.gl/PLMm51
-sed -i -e "s/example.com/$DOMAIN/" "$DOMAIN"
+sudo wget -O "$DOMAIN" https://goo.gl/PLMm51
+sudo sed -i -e "s/example.com/$DOMAIN/" "$DOMAIN"
 sudo ln -s /etc/nginx/sites-available/"$DOMAIN" /etc/nginx/sites-enabled/
 
 echo "Setting up Cloudflare FULL SSL"
@@ -30,13 +30,13 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/
 sudo openssl dhparam -out /etc/nginx/ssl/dhparam.pem 2048
 cd /etc/nginx/
 sudo mv nginx.conf nginx.conf.backup
-wget -O nginx.conf https://goo.gl/n8crcR
+sudo wget -O nginx.conf https://goo.gl/n8crcR
 sudo mkdir /var/www/"$DOMAIN"
 cd ~
-wget -O nextcloud.zip https://download.nextcloud.com/server/releases/nextcloud-13.0.1.zip
+sudo wget -O nextcloud.zip https://download.nextcloud.com/server/releases/nextcloud-13.0.1.zip
 unzip nextcloud.zip
-mv /root/nextcloud/* /var/www/"$DOMAIN"/
-rm -rf nextcloud nextcloud.zip
+sudo rsync -avP /root/nextcloud/ /var/www/"$DOMAIN"/
+sudo rm -rf nextcloud nextcloud.zip
 
 echo "Nginx server installation completed"
 sleep 2;
@@ -56,7 +56,6 @@ sudo sed -i "s/memory_limit = .*/memory_limit = 3000M/" /etc/php/7.0/fpm/php.ini
 sudo sed -i "s/upload_max_filesize = .*/upload_max_filesize = 1000M/" /etc/php/7.0/fpm/php.ini
 sudo sed -i "s/max_execution_time = .*/max_execution_time = 18000/" /etc/php/7.0/fpm/php.ini
 sudo sed -i "s/; max_input_vars = .*/max_input_vars = 5000/" /etc/php/7.0/fpm/php.ini
-sudo sed -i "s/zlib.output_compression = Off/zlib.output_compression = on/" /etc/php/7.0/fpm/php.ini
 
 sudo sed -i "s/;clear_env = no/clear_env = no/" /etc/php/7.0/fpm/pool.d/www.conf
 sudo sed -i "s/;opcache.enable=0/opcache.enable=1/" /etc/php/7.0/fpm/php.ini
