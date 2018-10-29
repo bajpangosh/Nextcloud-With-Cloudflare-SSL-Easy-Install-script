@@ -16,3 +16,7 @@ Use only on Ubuntu-18.04.
 > Mariadb (updated)
 
 `wget -qO nc-18-04 run.kloudboy.com/nc-18-04 && sudo bash nc-18-04`
+
+# Try DigitalOcean for Free with a $100 Credit
+
+https://offer.kloudboy.com/100USD-credit-coupon
